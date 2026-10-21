@@ -17,11 +17,11 @@ fi
 echo "[server] listing available PQC groups from the oqsprovider:"
 openssl list -kem-algorithms -provider oqsprovider | grep -i mlkem || true
 
-echo "[server] starting hybrid PQC TLS 1.3 server on 0.0.0.0:4433 (group: X25519MLKEM768)"
+echo "[server] starting hybrid PQC TLS 1.3 server on 0.0.0.0:4433"
 exec openssl s_server \
     -accept 4433 \
     -cert "$CERT_DIR/server-cert.pem" \
     -key "$CERT_DIR/server-key.pem" \
     -tls1_3 \
-    -groups X25519MLKEM768 \
+    -groups "X25519MLKEM768:mlkem512:mlkem768" \
     -www

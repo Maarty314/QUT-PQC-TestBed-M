@@ -23,5 +23,5 @@ exec openssl s_server \
     -cert "$CERT_DIR/server-cert.pem" \
     -key "$CERT_DIR/server-key.pem" \
     -tls1_3 \
-    -groups "X25519MLKEM768:mlkem512:mlkem768" \
+    -groups "bp512_mlkem1024:X25519MLKEM768:mlkem512:mlkem768" \
     -www

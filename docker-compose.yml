@@ -65,6 +65,23 @@ services:
       pqc-net:
         ipv4_address: 172.28.0.14
 
+  client4:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: pqc-client4
+    hostname: client4
+    depends_on:
+      - server
+    volumes:
+      - ./client4/entrypoint.sh:/entrypoint.sh:ro
+      - ./certs:/app/certs
+      - ./results:/app/results
+    entrypoint: ["/bin/bash", "/entrypoint.sh"]
+    networks:
+      pqc-net:
+        ipv4_address: 172.28.0.15
+
 #  attacker:
 #    build:
 #      context: .

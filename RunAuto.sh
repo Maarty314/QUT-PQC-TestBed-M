@@ -5,7 +5,7 @@ sleep 5
 docker compose down
 sleep 4
 
-for i in $(seq 1 100)
+for i in $(seq 1 500)
 do
     docker compose up -d
     echo "up $i"

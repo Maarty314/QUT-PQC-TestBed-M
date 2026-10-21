@@ -31,25 +31,42 @@ services:
       pqc-net:
         ipv4_address: 172.28.0.11
 
-  attacker:
+  client2:
     build:
       context: .
       dockerfile: docker/Dockerfile
-    container_name: pqc-attacker
-    hostname: attacker
+    container_name: pqc-client2
+    hostname: client2
     depends_on:
       - server
-      - client
     volumes:
-      - ./attacker/entrypoint.sh:/entrypoint.sh:ro
+      - ./client2/entrypoint.sh:/entrypoint.sh:ro
+      - ./certs:/app/certs
       - ./results:/app/results
     entrypoint: ["/bin/bash", "/entrypoint.sh"]
-    cap_add:
-      - NET_ADMIN
-      - NET_RAW
     networks:
       pqc-net:
-        ipv4_address: 172.28.0.12
+        ipv4_address: 172.28.0.13
+
+#  attacker:
+#    build:
+#      context: .
+#      dockerfile: docker/Dockerfile
+#    container_name: pqc-attacker
+#    hostname: attacker
+#    depends_on:
+#      - server
+#      - client
+#    volumes:
+#      - ./attacker/entrypoint.sh:/entrypoint.sh:ro
+#      - ./results:/app/results
+#    entrypoint: ["/bin/bash", "/entrypoint.sh"]
+#    cap_add:
+#      - NET_ADMIN
+#      - NET_RAW
+#    networks:
+#      pqc-net:
+#        ipv4_address: 172.28.0.12
 
 networks:
   pqc-net:
